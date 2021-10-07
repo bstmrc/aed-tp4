@@ -54,3 +54,17 @@ def mostrar_vector(v):
     '''Mostrar el vector'''
     for i in range(len(v)):
         print(v[i])
+
+
+def print_opc1_submenu():
+    menu = '\tMODO DE BÚSQUEDA\n' + ('==' * 20) + '\n1. Por ISBN\n2. Por TÍTULO\n' \
+            + '3. CACELAR\n'
+
+    print(menu)
+
+
+def isbn_search(vec, isbn):
+    pass
+    
+
+
