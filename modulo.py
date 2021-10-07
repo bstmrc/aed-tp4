@@ -1,5 +1,5 @@
 # modulo
-import os
+import os.path
 from Registro import *
 
 
