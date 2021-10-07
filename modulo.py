@@ -39,7 +39,8 @@ def cargar_vector(fd):
         m = open(fd, mode="rt", encoding="utf8")
         pos = 1
         for linea in m:
-            # linea = linea[-1] #CORREGIR DESPUES
+            if linea[-1] == '\n':
+                linea = linea[:-1]
             if pos != 1:
                 token = linea.split(',')
                 reg = Libro(token[0], int(token[1]), int(token[2]), int(token[3]), float(token[4]), token[5])
@@ -52,13 +53,4 @@ def cargar_vector(fd):
 def mostrar_vector(v):
     '''Mostrar el vector'''
     for i in range(len(v)):
-        print(v[i], end='')
-
-
-def principal():
-    v = cargar_vector("libros.csv")
-    mostrar_vector(v)
-
-
-if __name__ == '__main__':
-    principal()
+        print(v[i])
