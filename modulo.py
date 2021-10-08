@@ -59,12 +59,26 @@ def mostrar_vector(v):
 def print_opc1_submenu():
     menu = '\tMODO DE BÚSQUEDA\n' + ('==' * 20) + '\n1. Por ISBN\n2. Por TÍTULO\n' \
             + '3. CACELAR\n'
-
     print(menu)
 
 
 def isbn_search(vec, isbn):
-    pass
-    
+    inicio, final = 0, len(vec) - 1
+    index = 0
+    while inicio <= final:
+        centro = (inicio + final) // 2
+
+        if isbn == vec[centro].isbn:
+            index = centro
+            return index
+
+        if isbn < vec[centro].isbn:
+            final = centro - 1
+        else:
+            inicio = centro + 1     
+
+    return -1
 
 
+def add_rev(vec, index, cant):
+    vec[index].cant_rev += cant
