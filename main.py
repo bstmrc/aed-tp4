@@ -7,7 +7,7 @@ def main():
     libros = []
     csv_fd = 'libros.csv'
 
-    while opc != 8:
+    while opc != 0:
         m.print_menu()
         opc = int(input('OPCIÓN: '))
         
