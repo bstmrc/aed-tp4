@@ -82,3 +82,14 @@ def isbn_search(vec, isbn):
 
 def add_rev(vec, index, cant):
     vec[index].cant_rev += cant
+
+
+def mostar_matriz(mat):
+    cad = 'Libro más popular de idioma {} en el año {}: {}'
+    for idioma in range(len(mat)):
+        for anio in range(len(mat[idioma])):
+            if mat[idioma][anio] != 0:
+                cad.format(idioma, anio, mat[idioma][anio])
+                print(cad)
+                
+
