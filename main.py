@@ -58,7 +58,7 @@ def main():
                         elif opc_sm1 == 3:
                             print('Abortando...')
                 elif opc == 4:
-                    m = generar_matriz(libros)
+                    mat = m.generar_matriz(libros)
                 else:
                     print('Opción inválida')
 
