@@ -82,3 +82,26 @@ def isbn_search(vec, isbn):
 
 def add_rev(vec, index, cant):
     vec[index].cant_rev += cant
+
+
+def mayor_rating(v):
+    '''Función para encontrar el mayor rating'''
+    may = 0
+    for i in range(len(v)):
+        if v[i].rating > v[may].rating:
+            may = i
+    return may
+
+
+def generar_matriz(v):
+    '''Generar matriz'''
+    fils, cols = 27, 22
+    m = [[0] * cols for f in range(fils)]
+    for i in range(len(v)):
+        if 2000 <= v[i].anio <= 2020:
+            c = v[i].anio
+            print(c)
+            may = mayor_rating(v)
+            f = v[may].cod_idioma - 1
+            m[f][c] += v[i]
+    return m
