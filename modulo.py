@@ -51,18 +51,26 @@ def cargar_vector(fd):
 
 
 def mostrar_vector(v):
-    '''Mostrar el vector'''
+    '''Muestra el vector'''
     for i in range(len(v)):
         print(v[i])
 
 
 def print_opc1_submenu():
+    """
+    imprime en pantalla el submenu para la opcion 1
+    """
     menu = '\tMODO DE BÚSQUEDA\n' + ('==' * 20) + '\n1. Por ISBN\n2. Por TÍTULO\n' \
             + '3. CACELAR\n'
     print(menu)
 
 
 def isbn_search(vec, isbn):
+    """
+    Realiza una busqueda binaria por isbn requerido
+    desde el programa principal
+    """
+     
     inicio, final = 0, len(vec) - 1
     index = 0
     while inicio <= final:
@@ -81,6 +89,7 @@ def isbn_search(vec, isbn):
 
 
 def add_rev(vec, index, cant):
+    """Agrega una revision al registro indicado."""
     vec[index].cant_rev += cant
 
 
@@ -108,6 +117,10 @@ def generar_matriz(v):
 
 
 def mostar_matriz(mat):
+    """
+    Muestra por pantalla el resultado de las casillas de
+    la matriz que obtuvieron un valor
+    """
     cad = 'Libro más popular de idioma {} en el año {}: {}'
     for idioma in range(len(mat)):
         for anio in range(len(mat[idioma])):
