@@ -54,14 +54,25 @@ def main():
                                 print('Libro no cargado')
 
                         elif opc_sm1 == 2:
-                            pass
+                            ind = str(input('Ingrese el titulo del libro que esta buscando: '))
+                            encontrado = m.buscar_titulo(libros, ind)
+                            if encontrado == -1:
+                                print('El libro que esta buscando no existe.')
+                            else:
+                                print(libros[encontrado])
                         elif opc_sm1 == 3:
                             print('Abortando...')
+                        else:
+                            print('Opción inválida')
+
                 elif opc == 4:
                     mat = m.generar_matriz(libros)
-                else:
-                    print('Opción inválida')
-
+                elif opc == 5:
+                    pass
+                elif opc == 6:
+                    pass
+                elif opc == 7:
+                    pass
 
 
 if __name__ == '__main__':
