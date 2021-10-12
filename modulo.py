@@ -105,3 +105,13 @@ def generar_matriz(v):
             f = v[may].cod_idioma - 1
             m[f][c] += v[i]
     return m
+
+
+def mostar_matriz(mat):
+    cad = 'Libro más popular de idioma {} en el año {}: {}'
+    for idioma in range(len(mat)):
+        for anio in range(len(mat[idioma])):
+            if mat[idioma][anio] != 0:
+                cad.format(idioma, anio, mat[idioma][anio])
+                print(cad)
+                
