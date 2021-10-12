@@ -2,11 +2,12 @@
 
 import modulo as m
 
+
 def main():
     opc = -1
     libros = []
     csv_fd = 'libros.csv'
-
+    libros = []
     while opc != 0:
         m.print_menu()
         opc = int(input('OPCIÓN: '))
@@ -56,8 +57,11 @@ def main():
                             pass
                         elif opc_sm1 == 3:
                             print('Abortando...')
-                        else:
-                            print('Opción inválida')
+                elif opc == 4:
+                    m = generar_matriz(libros)
+                else:
+                    print('Opción inválida')
+
 
 if __name__ == '__main__':
     main()
