@@ -30,6 +30,14 @@ def main():
                     while opc_sm1 != 3:
                         m.print_opc1_submenu()
                         opc_sm1 = int(input('Opción: '))
+                        index = -1
+
+                        if opc_sm1 != 3:
+
+                            cant_rev = int(input('Cantidad de revisiones a agregar: '))
+                            while cant_rev <= 0:
+                                print('\n(RECORDATORIO): Debe ser una cantidad positiva mayor a 0')
+                                cant_rev = int(input('Cantidad de revisiones a agregar: '))
 
                         if opc_sm1 == 1:
 
@@ -42,11 +50,7 @@ def main():
                             
                             if index != -1:
                                 print('Libro de ISBN', isbn_req, 'encontrado...')
-                                cant_rev = int(input('Cantidad de revisiones a agregar: '))
-                                while cant_rev <= 0:
-                                    print('\n(RECORDATORIO): Debe ser una cantidad positiva mayor a 0')
-                                    cant_rev = int(input('Cantidad de revisiones a agregar: '))
-
+                                print(libros[index])
                                 m.add_rev(libros, index, cant_rev)
                                 print('Se agregaron las revisiones con éxito')
 
@@ -54,14 +58,21 @@ def main():
                                 print('Libro no cargado')
 
                         elif opc_sm1 == 2:
-                            ind = str(input('Ingrese el titulo del libro que esta buscando: '))
-                            encontrado = m.buscar_titulo(libros, ind)
-                            if encontrado == -1:
-                                print('El libro que esta buscando no existe.')
+                            title = str(input('Ingrese el titulo del libro que esta buscando: '))
+                            index = m.buscar_titulo(libros, title)
+
+                            if index != -1:
+                                print('Libro', title, 'encontrado...')
+                                print(libros[index])
+                                m.add_rev(libros, index, cant_rev)
+                                print('Se agregaron las revisiones con éxito')
+
                             else:
-                                print(libros[encontrado])
+                                print('El libro que esta buscando no existe.')
+
                         elif opc_sm1 == 3:
                             print('Abortando...')
+
                         else:
                             print('Opción inválida')
 
