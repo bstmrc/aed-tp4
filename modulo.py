@@ -70,7 +70,11 @@ def isbn_search(vec, isbn):
     Realiza una busqueda binaria por isbn requerido
     desde el programa principal
     """
+<<<<<<< HEAD
 
+=======
+     
+>>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
     inicio, final = 0, len(vec) - 1
     index = 0
     while inicio <= final:
@@ -103,6 +107,7 @@ def mayor_rating(v):
 
 
 def generar_matriz(v):
+<<<<<<< HEAD
     '''Generar matriz con el mayor rating'''
     fils, cols = 27, 22
     m = [[None] * cols for f in range(fils)]
@@ -115,6 +120,18 @@ def generar_matriz(v):
             else:
                 if reg.rating > m[f][c].rating:
                     m[f][c] = reg
+=======
+    '''Generar matriz'''
+    fils, cols = 27, 22
+    m = [[0] * cols for f in range(fils)]
+    for i in range(len(v)):
+        if 2000 <= v[i].anio <= 2020:
+            c = v[i].anio
+            print(c)
+            may = mayor_rating(v)
+            f = v[may].cod_idioma - 1
+            m[f][c] += v[i]
+>>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
     return m
 
 
@@ -126,10 +143,17 @@ def mostar_matriz(mat):
     cad = 'Libro más popular de idioma {} en el año {}: {}'
     for idioma in range(len(mat)):
         for anio in range(len(mat[idioma])):
+<<<<<<< HEAD
             if mat[idioma][anio] != None:
                 cad = cad.format(idioma + 1, anio + 2000, mat[idioma][anio].titulo)
                 print(cad)
 
+=======
+            if mat[idioma][anio] != 0:
+                cad.format(idioma, anio, mat[idioma][anio])
+                print(cad)
+                
+>>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
 
 def buscar_titulo(v, x):
     """busqueda secuencial"""
@@ -140,6 +164,7 @@ def buscar_titulo(v, x):
     return -1
 
 
+<<<<<<< HEAD
 def recorrer_mat(m):
     '''Recorrer matriz para verla, ya que la otra funcion no me muestra la matriz'''
     for f in range(len(m)):
@@ -158,3 +183,37 @@ def principal():
 
 if __name__ == '__main__':
     principal()
+=======
+def linear_search(v):
+    """Buscar Mayor Cantidad de Revisiones"""
+    idioma_libro = None
+    libro_may_rev = None
+    rating_libro = None
+    x = 0
+    for i in range(len(v)):
+        if v[i].cant_rev > x:
+            x = v[i].cant_rev
+            libro_may_rev = v[i]
+            idioma_libro = v[i].cod_idioma
+            rating_libro = v[i].rating
+    return libro_may_rev, idioma_libro, rating_libro
+
+
+def rating_promedio(x, v, y):
+    n = len(v)
+    promedio = 0
+    total_rating = 0
+    suma_rating = 0
+    for i in range(n):
+        if v[i].cod_idioma == x:
+            total_rating += 1
+            suma_rating += v[i].rating
+    promedio = suma_rating // total_rating
+    if promedio > y:
+        msj = '* El rating es menor al del promedio.'
+    elif promedio < y:
+        msj = '* El rating es mayor al del promedio.'
+    else:
+        msj = '* El rating es igual al del promedio.'
+    return promedio, msj
+>>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
