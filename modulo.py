@@ -70,11 +70,6 @@ def isbn_search(vec, isbn):
     Realiza una busqueda binaria por isbn requerido
     desde el programa principal
     """
-<<<<<<< HEAD
-
-=======
-     
->>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
     inicio, final = 0, len(vec) - 1
     index = 0
     while inicio <= final:
@@ -107,32 +102,19 @@ def mayor_rating(v):
 
 
 def generar_matriz(v):
-<<<<<<< HEAD
-    '''Generar matriz con el mayor rating'''
-    fils, cols = 27, 22
-    m = [[None] * cols for f in range(fils)]
-    for reg in v:
-        if 2000 <= reg.anio <= 2022:
-            f = reg.cod_idioma - 1
-            c = reg.anio - 2000
-            if m[f][c] == None:
-                m[f][c] = reg
-            else:
-                if reg.rating > m[f][c].rating:
-                    m[f][c] = reg
-=======
-    '''Generar matriz'''
-    fils, cols = 27, 22
-    m = [[0] * cols for f in range(fils)]
-    for i in range(len(v)):
-        if 2000 <= v[i].anio <= 2020:
-            c = v[i].anio
-            print(c)
-            may = mayor_rating(v)
-            f = v[may].cod_idioma - 1
-            m[f][c] += v[i]
->>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
-    return m
+   """generar matriz"""
+
+   fils, cols = 27, 22
+   m = [[0] * cols for f in range(fils)]
+   for i in range(len(v)):
+       if 2000 <= v[i].anio <= 2020:
+           c = v[i].anio
+           print(c)
+           may = mayor_rating(v)
+           f = v[may].cod_idioma - 1
+           m[f][c] += v[i]
+
+   return m
 
 
 def mostar_matriz(mat):
@@ -143,17 +125,10 @@ def mostar_matriz(mat):
     cad = 'Libro más popular de idioma {} en el año {}: {}'
     for idioma in range(len(mat)):
         for anio in range(len(mat[idioma])):
-<<<<<<< HEAD
             if mat[idioma][anio] != None:
                 cad = cad.format(idioma + 1, anio + 2000, mat[idioma][anio].titulo)
                 print(cad)
 
-=======
-            if mat[idioma][anio] != 0:
-                cad.format(idioma, anio, mat[idioma][anio])
-                print(cad)
-                
->>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
 
 def buscar_titulo(v, x):
     """busqueda secuencial"""
@@ -164,7 +139,6 @@ def buscar_titulo(v, x):
     return -1
 
 
-<<<<<<< HEAD
 def recorrer_mat(m):
     '''Recorrer matriz para verla, ya que la otra funcion no me muestra la matriz'''
     for f in range(len(m)):
@@ -172,18 +146,6 @@ def recorrer_mat(m):
             if m[f][c] != None:
                 print('|Libro: ', m[f][c].titulo, '|Idioma: ', f + 1, '|Año: ', c + 2000, '|Mayor rating: ', m[f][c].rating)
 
-
-def principal():
-    print('Prueba')
-    v = cargar_vector('libros.csv')
-    mat = generar_matriz(v)
-    # mostar_matriz(mat)
-    recorrer_mat(mat)
-
-
-if __name__ == '__main__':
-    principal()
-=======
 def linear_search(v):
     """Buscar Mayor Cantidad de Revisiones"""
     idioma_libro = None
@@ -216,4 +178,15 @@ def rating_promedio(x, v, y):
     else:
         msj = '* El rating es igual al del promedio.'
     return promedio, msj
->>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
+
+def principal():
+    print('Prueba')
+    v = cargar_vector('libros.csv')
+    mat = generar_matriz(v)
+    # mostar_matriz(mat)
+    recorrer_mat(mat)
+
+
+if __name__ == '__main__':
+    principal()
+
