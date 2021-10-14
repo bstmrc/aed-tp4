@@ -1,6 +1,7 @@
 # modulo
 import os.path
 from Registro import *
+import pickle
 
 
 def print_menu():
@@ -180,13 +181,27 @@ def rating_promedio(x, v, y):
         msj = '* El rating es igual al del promedio.'
     return promedio, msj
 
-def principal():
-    print('Prueba')
-    v = cargar_vector('libros.csv')
-    mat = generar_matriz(v)
-    # mostar_matriz(mat)
-    recorrer_mat(mat)
+
+def mostrar_archivo_mat(fd):
+    if not os.path.exists(fd):
+        print('El archivo', fd, 'no existe')
+        return
+    m = open(fd, 'rb')
+    t = os.path.getsize(fd)
+    while m.tell() < t:
+        mat = pickle.load(m)
+        print(mat)
+    m.close()
 
 
-if __name__ == '__main__':
-    principal()
+def generar_archivo_matriz(mat, fd):
+    m = open(fd, 'wb')
+    for f in range(len(mat)):
+        for c in range(len(mat[f])):
+            if mat[f][c] != None:
+                pickle.dump(mat[f][c], m)
+    m.close()
+    print('--' * 40)
+    print('Archivo "', fd, '"generado.')
+    print('--' * 40)
+

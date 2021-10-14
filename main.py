@@ -7,7 +7,9 @@ def main():
     opc = -1
     libros = []
     csv_fd = 'libros.csv'
+    fd = 'populares.dat'
     libros = []
+    matriz_generada = False
     while opc != 0:
         m.print_menu()
         opc = int(input('OPCIÓN: '))
@@ -84,12 +86,17 @@ def main():
                 print(msj)
             elif opc == 4:
                 mat = m.generar_matriz(libros)
+                m.recorrer_mat(mat)
+                matriz_generada = True
             elif opc == 5:
                 pass
             elif opc == 6:
-                pass
+                if matriz_generada:
+                    m.generar_archivo_matriz(mat, fd)
+                else:
+                    print('!!MATRIZ NO GENERADA¡¡')
             elif opc == 7:
-                pass
+                m.mostrar_archivo_mat(fd)
 
 
 if __name__ == '__main__':
