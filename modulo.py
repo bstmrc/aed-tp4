@@ -102,17 +102,19 @@ def mayor_rating(v):
 
 
 def generar_matriz(v):
-   fils, cols = 27, 22
-   m = [[0] * cols for f in range(fils)]
-   for i in range(len(v)):
-       if 2000 <= v[i].anio <= 2020:
-           c = v[i].anio
-           print(c)
-           may = mayor_rating(v)
-           f = v[may].cod_idioma - 1
-           m[f][c] += v[i]
-
-   return m
+    '''Generar matriz con el mayor rating'''
+    fils, cols = 27, 22
+    m = [[None] * cols for f in range(fils)]
+    for reg in v:
+        if 2000 <= reg.anio <= 2022:
+            f = reg.cod_idioma - 1
+            c = reg.anio - 2000
+            if m[f][c] == None:
+                m[f][c] = reg
+            else:
+                if reg.rating > m[f][c].rating:
+                    m[f][c] = reg
+    return m
 
 
 def mostar_matriz(mat):
