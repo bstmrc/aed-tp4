@@ -74,17 +74,7 @@ def main():
 
                     else:
                         print('Abortando...')
-<<<<<<< HEAD
 
-=======
-            elif opc == 3:
-                libro_may_rev, idioma_libro, rating_libro = m.linear_search(libros)
-                print('* El libro con mayor cantidad de reviciones es: ')
-                print(libro_may_rev)
-                promedio, msj = m.rating_promedio(idioma_libro, libros, rating_libro)
-                print('* El promedio de rating en su idioma es de: ', promedio)
-                print(msj)
->>>>>>> 9c34b4834b20c762f9bc38f2942ac3df45712d90
             elif opc == 4:
                 mat = m.generar_matriz(libros)
             elif opc == 5:
