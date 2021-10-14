@@ -70,7 +70,6 @@ def isbn_search(vec, isbn):
     Realiza una busqueda binaria por isbn requerido
     desde el programa principal
     """
-
     inicio, final = 0, len(vec) - 1
     index = 0
     while inicio <= final:
@@ -103,19 +102,17 @@ def mayor_rating(v):
 
 
 def generar_matriz(v):
-    '''Generar matriz con el mayor rating'''
-    fils, cols = 27, 22
-    m = [[None] * cols for f in range(fils)]
-    for reg in v:
-        if 2000 <= reg.anio <= 2022:
-            f = reg.cod_idioma - 1
-            c = reg.anio - 2000
-            if m[f][c] == None:
-                m[f][c] = reg
-            else:
-                if reg.rating > m[f][c].rating:
-                    m[f][c] = reg
-    return m
+   fils, cols = 27, 22
+   m = [[0] * cols for f in range(fils)]
+   for i in range(len(v)):
+       if 2000 <= v[i].anio <= 2020:
+           c = v[i].anio
+           print(c)
+           may = mayor_rating(v)
+           f = v[may].cod_idioma - 1
+           m[f][c] += v[i]
+
+   return m
 
 
 def mostar_matriz(mat):
@@ -147,6 +144,39 @@ def recorrer_mat(m):
             if m[f][c] != None:
                 print('|Libro: ', m[f][c].titulo, '|Idioma: ', f + 1, '|Año: ', c + 2000, '|Mayor rating: ', m[f][c].rating)
 
+
+def linear_search(v):
+    """Buscar Mayor Cantidad de Revisiones"""
+    idioma_libro = None
+    libro_may_rev = None
+    rating_libro = None
+    x = 0
+    for i in range(len(v)):
+        if v[i].cant_rev > x:
+            x = v[i].cant_rev
+            libro_may_rev = v[i]
+            idioma_libro = v[i].cod_idioma
+            rating_libro = v[i].rating
+    return libro_may_rev, idioma_libro, rating_libro
+
+
+def rating_promedio(x, v, y):
+    n = len(v)
+    promedio = 0
+    total_rating = 0
+    suma_rating = 0
+    for i in range(n):
+        if v[i].cod_idioma == x:
+            total_rating += 1
+            suma_rating += v[i].rating
+    promedio = suma_rating // total_rating
+    if promedio > y:
+        msj = '* El rating es menor al del promedio.'
+    elif promedio < y:
+        msj = '* El rating es mayor al del promedio.'
+    else:
+        msj = '* El rating es igual al del promedio.'
+    return promedio, msj
 
 def principal():
     print('Prueba')
