@@ -205,3 +205,48 @@ def generar_archivo_matriz(mat, fd):
     print('Archivo "', fd, '"generado.')
     print('--' * 40)
 
+
+def decade_range(f_year, l_year):
+    """
+    retorna un vector de acumulacion correspondiente
+    a la cantidad de peliculas por década
+    """
+    l_year -= 10
+    decades_range = []
+    for decada in range(f_year, l_year + 1, 10):
+        f_year_decade = decada
+        l_year_decade = decada + 10
+        decades_range.append([f_year_decade, l_year_decade])
+
+    return decades_range
+
+def cont_dec(vec_reg):
+    counter = [0] * 10
+    for libro in vec_reg:
+        if libro.anio < 2000:
+            decada_index = ((libro.anio - 1900) // 10)
+            counter[decada_index] += 1
+
+    return counter
+
+
+def mostrar_cont(vec):
+    decades = decade_range(1900, 2000)
+    for cant in range(len(vec)):
+        print('Libros publicados en la década', decades[cant][0], '-', decades[cant][1], \
+                ':', vec[cant])
+
+
+def mayor(vec):
+    decades = decade_range(1900, 2000)
+    mayor = max(vec)
+    index = -1 
+
+    for cont in range(len(vec)):
+        if mayor == vec[cont]:
+            index = cont
+
+    print('Década con mayor cantidad de publicaciones: ', decades[index][0], '-', decades[index][1])
+
+
+

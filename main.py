@@ -1,4 +1,4 @@
-# main
+#prueba main
 
 import modulo as m
 
@@ -88,8 +88,12 @@ def main():
                 mat = m.generar_matriz(libros)
                 m.recorrer_mat(mat)
                 matriz_generada = True
+
             elif opc == 5:
-                pass
+                contador = m.cont_dec(libros)
+                m.mostrar_cont(contador)
+                m.mayor(contador)
+
             elif opc == 6:
                 if matriz_generada:
                     m.generar_archivo_matriz(mat, fd)
