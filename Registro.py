@@ -8,7 +8,7 @@ class Libro:
         self.isbn = isbn
 
     def __str__(self):
-        s = '|Título:{:<20} |Cantidad de revisiones: {:>4} |Año {:>7} |Codigo del idioma: {:>4} |Rating: {:>4} |ISBN: {:>10} '
+        s = '|Título:{:<100} |Cantidad de revisiones: {:>4} |Año {:>7} |Codigo del idioma: {:>4} |Rating: {:>4} |ISBN: {:>10} '
         s = s.format(self.titulo, self.cant_rev, self.anio, self.cod_idioma, self.rating, self.isbn)
         return s
 

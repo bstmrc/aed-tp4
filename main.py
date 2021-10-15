@@ -53,6 +53,7 @@ def main():
                                 print('Libro de ISBN', isbn_req, 'encontrado...')
                                 print(libros[index])
                                 m.add_rev(libros, index, cant_rev)
+                                print(libros[index])
                                 print('Se agregaron las revisiones con éxito')
 
                             else:

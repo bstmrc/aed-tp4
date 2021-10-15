@@ -112,9 +112,8 @@ def generar_matriz(v):
             c = reg.anio - 2000
             if m[f][c] == None:
                 m[f][c] = reg
-            else:
-                if reg.rating > m[f][c].rating:
-                    m[f][c] = reg
+            elif reg.rating > m[f][c].rating:
+                m[f][c] = reg
     return m
 
 
@@ -145,7 +144,8 @@ def recorrer_mat(m):
     for f in range(len(m)):
         for c in range(len(m[f])):
             if m[f][c] != None:
-                print('|Libro: ', m[f][c].titulo, '|Idioma: ', f + 1, '|Año: ', c + 2000, '|Mayor rating: ', m[f][c].rating)
+                print('|Idioma: ', f + 1, '|Año: ', c + 2000, '|Rating: ', m[f][c].rating, '|Título: ',
+                      m[f][c].titulo)
 
 
 def linear_search(v):
@@ -196,13 +196,16 @@ def mostrar_archivo_mat(fd):
 
 def generar_archivo_matriz(mat, fd):
     m = open(fd, 'wb')
+    cont = 0
     for f in range(len(mat)):
         for c in range(len(mat[f])):
             if mat[f][c] != None:
                 pickle.dump(mat[f][c], m)
+                cont += 1
     m.close()
     print('--' * 40)
-    print('Archivo "', fd, '"generado.')
+    print(cont, 'registros grabados')
+    print('Archivo "', fd, '" generado.')
     print('--' * 40)
 
 
@@ -247,6 +250,5 @@ def mayor(vec):
             index = cont
 
     print('Década con mayor cantidad de publicaciones: ', decades[index][0], '-', decades[index][1])
-
 
 
