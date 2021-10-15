@@ -8,7 +8,6 @@ def main():
     libros = []
     csv_fd = 'libros.csv'
     fd = 'populares.dat'
-    libros = []
     matriz_generada = False
     while opc != 0:
         m.print_menu()

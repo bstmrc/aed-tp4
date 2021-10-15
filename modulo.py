@@ -105,7 +105,7 @@ def mayor_rating(v):
 def generar_matriz(v):
     '''Generar matriz con el mayor rating'''
     fils, cols = 27, 22
-    m = [[None] * cols for f in range(fils)]
+    m = [[0] * cols for f in range(fils)]
     for reg in v:
         if 2000 <= reg.anio <= 2022:
             f = reg.cod_idioma - 1
@@ -236,7 +236,8 @@ def cont_dec(vec_reg):
 def mostrar_cont(vec):
     decades = decade_range(1900, 2000)
     for cant in range(len(vec)):
-        print('Libros publicados en la década', decades[cant][0], '-', decades[cant][1], \
+        if vec[cant] != 0:
+            print('Libros publicados en la década', decades[cant][0], '-', decades[cant][1], \
                 ':', vec[cant])
 
 
@@ -249,6 +250,6 @@ def mayor(vec):
         if mayor == vec[cont]:
             index = cont
 
-    print('Década con mayor cantidad de publicaciones: ', decades[index][0], '-', decades[index][1])
+    print('\nDécada con mayor cantidad de publicaciones: ', decades[index][0], '-', decades[index][1])
 
 
