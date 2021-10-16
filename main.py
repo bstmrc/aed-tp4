@@ -1,5 +1,3 @@
-#prueba main
-
 import modulo as m
 
 
@@ -12,7 +10,8 @@ def main():
     while opc != 0:
         m.print_menu()
         opc = int(input('OPCIÓN: '))
-        
+        print('--' * 40)
+
         if opc == 1:
             libros = m.cargar_vector(csv_fd)
             m.mostrar_vector(libros)
@@ -49,11 +48,11 @@ def main():
                             index = m.isbn_search(libros, isbn_req)
                             
                             if index != -1:
-                                print('Libro de ISBN', isbn_req, 'encontrado...')
+                                print('Libro de ISBN', isbn_req, ', fue encontrado...')
                                 print(libros[index])
                                 m.add_rev(libros, index, cant_rev)
-                                print(libros[index])
                                 print('Se agregaron las revisiones con éxito')
+                                print(libros[index])
 
                             else:
                                 print('Libro no cargado')
@@ -63,10 +62,11 @@ def main():
                             index = m.buscar_titulo(libros, title)
 
                             if index != -1:
-                                print('Libro', title, 'encontrado...')
+                                print('Libro', title, ', fue encontrado...')
                                 print(libros[index])
                                 m.add_rev(libros, index, cant_rev)
                                 print('Se agregaron las revisiones con éxito')
+                                print(libros[index])
 
                             else:
                                 print('El libro que esta buscando no existe.')
@@ -82,7 +82,7 @@ def main():
                 print('* El libro con mayor cantidad de reviciones es: ')
                 print(libro_may_rev)
                 promedio, msj = m.rating_promedio(idioma_libro, libros, rating_libro)
-                print('* El promedio de rating en su idioma es de: ', promedio)
+                print('* El promedio de rating en su idioma es de: ', round(promedio, 2))
                 print(msj)
             elif opc == 4:
                 mat = m.generar_matriz(libros)

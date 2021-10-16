@@ -1,20 +1,20 @@
-# modulo
 import os.path
-from Registro import *
 import pickle
+
+from Registro import *
 
 
 def print_menu():
-    '''Printea el menú principal'''
-    menu = '\t\t\tMENÚ DE OPCIONES\n' + ('==' * 20) + '\n1. Carga\n2. Sumar Revision\n' \
+    """Printea el menú principal"""
+    menu = ('--' * 40) + '\n\t\t\t\t\t\t\t\tMENÚ DE OPCIONES\n' + ('--' * 40) + '\n1. Carga\n2. Sumar Revision\n' \
            + '3. Mayor revisiones\n4. Popularidad 2000\n5. Publicaciones por década\n' \
-           + '6. Guardar populares\n7. Mostrar archivo\n0. SALIR\n' + ('==' * 20)
+           + '6. Guardar populares\n7. Mostrar archivo\n0. SALIR\n' + ('--' * 40)
 
     print(menu)
 
 
 def add_in_order(v, reg):
-    '''Cargar archivo en el registro ordenado por ISBN'''
+    """Cargar archivo en el registro ordenado por ISBN"""
     izq, der = 0, len(v) - 1
     pos = 0
     while izq <= der:
@@ -32,7 +32,7 @@ def add_in_order(v, reg):
 
 
 def cargar_vector(fd):
-    ''' Leer archivo y cargarlo en un vector'''
+    """Leer archivo y cargarlo en un vector"""
     v = []
     if not os.path.exists(fd):
         print('El archivo', fd, 'no existe')
@@ -52,7 +52,7 @@ def cargar_vector(fd):
 
 
 def mostrar_vector(v):
-    '''Muestra el vector'''
+    """Muestra el vector"""
     for i in range(len(v)):
         print(v[i])
 
@@ -61,8 +61,8 @@ def print_opc1_submenu():
     """
     imprime en pantalla el submenu para la opcion 1
     """
-    menu = '\tMODO DE BÚSQUEDA\n' + ('==' * 20) + '\n1. Por ISBN\n2. Por TÍTULO\n' \
-           + '3. CACELAR\n'
+    menu = ('--' * 40) + '\n\t\t\t\t\t\t\t\tMODO DE BÚSQUEDA\n' + ('--' * 40) + '\n1. Por ISBN\n2. Por TÍTULO\n' \
+           + '3. CACELAR\n' + ('--' * 40)
     print(menu)
 
 
@@ -94,7 +94,7 @@ def add_rev(vec, index, cant):
 
 
 def mayor_rating(v):
-    '''Función para encontrar el mayor rating'''
+    """Función para encontrar el mayor rating"""
     may = 0
     for i in range(len(v)):
         if v[i].rating > v[may].rating:
@@ -103,9 +103,9 @@ def mayor_rating(v):
 
 
 def generar_matriz(v):
-    '''Generar matriz con el mayor rating'''
+    """Generar matriz con el mayor rating"""
     fils, cols = 27, 22
-    m = [[0] * cols for f in range(fils)]
+    m = [[None] * cols for f in range(fils)]
     for reg in v:
         if 2000 <= reg.anio <= 2022:
             f = reg.cod_idioma - 1
@@ -115,19 +115,6 @@ def generar_matriz(v):
             elif reg.rating > m[f][c].rating:
                 m[f][c] = reg
     return m
-
-
-def mostar_matriz(mat):
-    """
-    Muestra por pantalla el resultado de las casillas de
-    la matriz que obtuvieron un valor
-    """
-    cad = 'Libro más popular de idioma {} en el año {}: {}'
-    for idioma in range(len(mat)):
-        for anio in range(len(mat[idioma])):
-            if mat[idioma][anio] != None:
-                cad = cad.format(idioma + 1, anio + 2000, mat[idioma][anio].titulo)
-                print(cad)
 
 
 def buscar_titulo(v, x):
@@ -140,7 +127,7 @@ def buscar_titulo(v, x):
 
 
 def recorrer_mat(m):
-    '''Recorrer matriz para verla, ya que la otra funcion no me muestra la matriz'''
+    """Recorrer matriz para verla, ya que la otra funcion no me muestra la matriz"""
     for f in range(len(m)):
         for c in range(len(m[f])):
             if m[f][c] != None:
@@ -164,15 +151,15 @@ def linear_search(v):
 
 
 def rating_promedio(x, v, y):
+    """Buscar el promedio"""
     n = len(v)
-    promedio = 0
     total_rating = 0
     suma_rating = 0
     for i in range(n):
         if v[i].cod_idioma == x:
             total_rating += 1
             suma_rating += v[i].rating
-    promedio = suma_rating // total_rating
+    promedio = calcular_promedio(suma_rating, total_rating)
     if promedio > y:
         msj = '* El rating es menor al del promedio.'
     elif promedio < y:
@@ -182,7 +169,16 @@ def rating_promedio(x, v, y):
     return promedio, msj
 
 
+def calcular_promedio(suma, total):
+    """verificar si es distinto de 0"""
+    if total != 0:
+        return suma / total
+    else:
+        return 0
+
+
 def mostrar_archivo_mat(fd):
+    """Mostrar archivo de matriz"""
     if not os.path.exists(fd):
         print('El archivo', fd, 'no existe')
         return
@@ -195,6 +191,7 @@ def mostrar_archivo_mat(fd):
 
 
 def generar_archivo_matriz(mat, fd):
+    """Generar archivo matriz"""
     m = open(fd, 'wb')
     cont = 0
     for f in range(len(mat)):
@@ -223,6 +220,7 @@ def decade_range(f_year, l_year):
 
     return decades_range
 
+
 def cont_dec(vec_reg):
     counter = [0] * 10
     for libro in vec_reg:
@@ -238,18 +236,16 @@ def mostrar_cont(vec):
     for cant in range(len(vec)):
         if vec[cant] != 0:
             print('Libros publicados en la década', decades[cant][0], '-', decades[cant][1], \
-                ':', vec[cant])
+                  ':', vec[cant])
 
 
 def mayor(vec):
     decades = decade_range(1900, 2000)
     mayor = max(vec)
-    index = -1 
+    index = -1
 
     for cont in range(len(vec)):
         if mayor == vec[cont]:
             index = cont
 
     print('\nDécada con mayor cantidad de publicaciones: ', decades[index][0], '-', decades[index][1])
-
-
